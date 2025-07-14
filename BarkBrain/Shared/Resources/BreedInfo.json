@@ -1,0 +1,182 @@
+[
+  {
+    "name": "labrador",
+    "category": "Sporting",
+    "origin": "Newfoundland, Canada",
+    "characteristics": "Labrador Retrievers are friendly, outgoing, and active dogs. They are highly intelligent, easy to train, and loyal to their families. Labradors have a dense, water-repellent double coat.",
+    "temperament": "Friendly, outgoing, active",
+    "size": "Medium to large breed, weight 25-36 kg",
+    "lifespan": "10-12 years"
+  },
+  {
+    "name": "golden retriever",
+    "category": "Sporting",
+    "origin": "Scotland",
+    "characteristics": "Golden Retrievers are known for their gentle temperament and beautiful golden coat. They are intelligent, friendly, loyal, and make excellent family and working dogs.",
+    "temperament": "Gentle, intelligent, friendly",
+    "size": "Medium to large breed, weight 25-34 kg",
+    "lifespan": "10-12 years"
+  },
+  {
+    "name": "german shepherd",
+    "category": "Herding",
+    "origin": "Germany",
+    "characteristics": "German Shepherds are versatile working dogs known for their courage, loyalty, and versatility. They have a double coat, typically black and tan in color.",
+    "temperament": "Confident, courageous, versatile",
+    "size": "Large breed, weight 22-40 kg",
+    "lifespan": "9-13 years"
+  },
+  {
+    "name": "bulldog",
+    "category": "Non-Sporting",
+    "origin": "England",
+    "characteristics": "English Bulldogs have a distinctive flat face and muscular build. Despite their serious appearance, they are actually gentle and friendly.",
+    "temperament": "Calm, friendly, courageous",
+    "size": "Medium breed, weight 18-25 kg",
+    "lifespan": "8-10 years"
+  },
+  {
+    "name": "poodle",
+    "category": "Non-Sporting",
+    "origin": "France/Germany",
+    "characteristics": "Poodles are known for their intelligence and distinctive curly coat. They come in three sizes: Standard, Miniature, and Toy. They are highly trainable dogs.",
+    "temperament": "Intelligent, active, alert",
+    "size": "Varies by type: Toy 2-4 kg, Standard 20-32 kg",
+    "lifespan": "12-15 years"
+  },
+  {
+    "name": "beagle",
+    "category": "Hound",
+    "origin": "England",
+    "characteristics": "Beagles are medium-sized hounds known for their keen sense of smell and friendly nature. They have a tricolor coat (black, white, and brown).",
+    "temperament": "Friendly, curious, merry",
+    "size": "Medium breed, weight 9-11 kg",
+    "lifespan": "12-15 years"
+  },
+  {
+    "name": "rottweiler",
+    "category": "Working",
+    "origin": "Germany",
+    "characteristics": "Rottweilers are robust, powerful working dogs known for their loyalty and protective nature. They have a black coat with tan markings.",
+    "temperament": "Confident, fearless, good-natured",
+    "size": "Large breed, weight 35-60 kg",
+    "lifespan": "8-10 years"
+  },
+  {
+    "name": "yorkshire terrier",
+    "category": "Toy",
+    "origin": "Yorkshire, England",
+    "characteristics": "Yorkshire Terriers are small dogs with long, silky coats. Despite their small size, they are brave and energetic.",
+    "temperament": "Bold, determined, energetic",
+    "size": "Toy breed, weight 2-3 kg",
+    "lifespan": "13-16 years"
+  },
+  {
+    "name": "boxer",
+    "category": "Working",
+    "origin": "Germany",
+    "characteristics": "Boxers are medium to large working dogs known for their playful nature and loyalty. They have short coats and square-shaped heads.",
+    "temperament": "Playful, intelligent, loyal",
+    "size": "Medium to large breed, weight 25-32 kg",
+    "lifespan": "10-12 years"
+  },
+  {
+    "name": "dachshund",
+    "category": "Hound",
+    "origin": "Germany",
+    "characteristics": "Dachshunds are known for their distinctive long body and short legs, also called 'hot dog dogs'. They are brave and sometimes stubborn.",
+    "temperament": "Curious, friendly, spunky",
+    "size": "Small breed, weight 7-15 kg",
+    "lifespan": "12-16 years"
+  },
+  {
+    "name": "siberian husky",
+    "category": "Working",
+    "origin": "Siberia",
+    "characteristics": "Siberian Huskies are medium-sized working dogs known for their endurance and ability to pull sleds in snow. They have blue or multicolored eyes.",
+    "temperament": "Outgoing, gentle, intelligent",
+    "size": "Medium breed, weight 16-27 kg",
+    "lifespan": "12-14 years"
+  },
+  {
+    "name": "shih tzu",
+    "category": "Toy",
+    "origin": "Tibet/China",
+    "characteristics": "Shih Tzus are small toy dogs with long, silky coats. They are friendly, outgoing, and make excellent companion dogs.",
+    "temperament": "Friendly, outgoing, playful",
+    "size": "Small breed, weight 4-7 kg",
+    "lifespan": "10-18 years"
+  },
+  {
+    "name": "border collie",
+    "category": "Herding",
+    "origin": "Scottish Borders",
+    "characteristics": "Border Collies are considered one of the most intelligent dog breeds. They are energetic and require plenty of physical and mental stimulation.",
+    "temperament": "Intelligent, energetic, alert",
+    "size": "Medium breed, weight 12-20 kg",
+    "lifespan": "12-15 years"
+  },
+  {
+    "name": "boston terrier",
+    "category": "Non-Sporting",
+    "origin": "United States",
+    "characteristics": "Boston Terriers are small, compact dogs with distinctive 'tuxedo' markings. They are friendly, intelligent, and excellent city dogs.",
+    "temperament": "Friendly, intelligent, lively",
+    "size": "Small breed, weight 4.5-11 kg",
+    "lifespan": "11-13 years"
+  },
+  {
+    "name": "pomeranian",
+    "category": "Toy",
+    "origin": "Pomerania region",
+    "characteristics": "Pomeranians are small toy dogs with fluffy double coats. Despite their small size, they are bold and energetic.",
+    "temperament": "Bold, inquisitive, lively",
+    "size": "Toy breed, weight 1.9-3.5 kg",
+    "lifespan": "12-16 years"
+  },
+  {
+    "name": "australian shepherd",
+    "category": "Herding",
+    "origin": "Western United States",
+    "characteristics": "Australian Shepherds are medium-sized herding dogs known for their intelligence and working ability. They have beautiful coats and different colored eyes.",
+    "temperament": "Intelligent, work-oriented, energetic",
+    "size": "Medium breed, weight 16-32 kg",
+    "lifespan": "12-15 years"
+  },
+  {
+    "name": "cocker spaniel",
+    "category": "Sporting",
+    "origin": "England",
+    "characteristics": "Cocker Spaniels are medium-sized sporting dogs known for their gentle nature and beautiful coats. They make excellent family dogs.",
+    "temperament": "Gentle, intelligent, happy",
+    "size": "Medium breed, weight 12-15 kg",
+    "lifespan": "12-15 years"
+  },
+  {
+    "name": "french bulldog",
+    "category": "Non-Sporting",
+    "origin": "France",
+    "characteristics": "French Bulldogs are small dogs with distinctive 'bat ears' and flat faces. They adapt well to city life and have gentle temperaments.",
+    "temperament": "Adaptable, playful, smart",
+    "size": "Small breed, weight 8-14 kg",
+    "lifespan": "10-12 years"
+  },
+  {
+    "name": "great dane",
+    "category": "Working",
+    "origin": "Germany",
+    "characteristics": "Great Danes are giant working dogs known for their gentle giant personality. Despite their large size, they are friendly and gentle.",
+    "temperament": "Friendly, gentle, confident",
+    "size": "Giant breed, weight 45-90 kg",
+    "lifespan": "8-10 years"
+  },
+  {
+    "name": "chihuahua",
+    "category": "Toy",
+    "origin": "Mexico",
+    "characteristics": "Chihuahuas are the world's smallest dog breed but have huge personalities. They are loyal to their owners and sometimes wary of strangers.",
+    "temperament": "Alert, quick-moving, sassy",
+    "size": "Toy breed, weight 1-3 kg",
+    "lifespan": "14-16 years"
+  }
+]
