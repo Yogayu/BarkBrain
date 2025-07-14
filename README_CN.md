@@ -172,176 +172,46 @@ class ImageCacheManager {
 ## 测试策略
 
 ### 测试架构设计
+项目采用分层测试架构，包含单元测试、性能测试和UI测试三个层次，确保代码质量和应用稳定性。
 
 ### 测试文件结构
+- **BarkBrainTests**: 核心功能单元测试和性能基准测试
+- **BarkBrainUITests**: UI功能测试和应用启动测试
 
-```
-BarkBrainTests/
-├── BarkBrainTests.swift           # 核心功能单元测试
-└── Performance/
-    └── PerformanceTests.swift     # 性能基准测试
-
-BarkBrainUITests/
-├── BarkBrainUITests.swift         # 主要 UI 功能测试
-└── BarkBrainUITestsLaunchTests.swift  # 应用启动测试
-```
-
-### 1. 单元测试 (Unit Tests)
+### 1. 单元测试
 
 #### 测试覆盖内容
-- **模型层测试**: `Breed`、`GameState` 等数据模型
+- **模型层测试**: `Breed`、`GameState` 等数据模型验证
 - **业务逻辑测试**: 训练逻辑、分数计算、状态管理
 - **API 服务测试**: 网络请求、数据解析、错误处理
-- **缓存机制测试**: 图片缓存、数据缓存策略
+- **缓存机制测试**: 图片缓存、数据缓存策略验证
 
-#### 核心测试用例
-```swift
-// 模型测试示例
-func testBreedModelInitialization() {
-    let breed = Breed(name: "labrador", subBreeds: ["chocolate", "yellow"])
-    XCTAssertEqual(breed.displayName, "Labrador")
-    XCTAssertEqual(breed.subBreeds.count, 2)
-}
-
-// 游戏状态测试示例
-func testGameStateScoreTracking() {
-    var gameState = GameState()
-    gameState.recordAnswer(isCorrect: true)
-    XCTAssertEqual(gameState.correctAnswers, 1)
-    XCTAssertEqual(gameState.accuracy, 1.0)
-}
-
-// API 服务测试示例
-func testDogAPIServiceSuccess() async throws {
-    let mockService = MockDogAPIService()
-    let response = try await mockService.fetchBreeds()
-    XCTAssertFalse(response.message.isEmpty)
-}
-```
-
-### 2. 性能测试 (Performance Tests)
+### 2. 性能测试
 
 #### 测试指标
-- **API 并发性能**: 测试同时发起多个 API 请求的性能
-- **图片缓存性能**: 测试缓存操作的响应时间
-- **模型创建性能**: 测试大量数据模型创建的性能
-- **内存使用效率**: 监控内存占用和释放
+- **API 并发性能**: 多个同时API请求的性能表现
+- **图片缓存性能**: 缓存操作响应时间
+- **模型创建性能**: 大量数据模型创建效率
+- **内存使用效率**: 内存占用和释放监控
 
-#### 性能基准
-```swift
-// API 并发性能测试
-func testAPIConcurrentRequestsPerformance() {
-    measure(metrics: [XCTClockMetric(), XCTMemoryMetric()]) {
-        // 并发执行 10 个 API 请求
-        let expectation = XCTestExpectation(description: "Concurrent API requests")
-        // 测试实现...
-    }
-}
-
-// 缓存性能测试
-func testImageCachePerformance() {
-    measure(metrics: [XCTClockMetric()]) {
-        // 执行 100 次缓存操作
-        for i in 0..<100 {
-            imageCache.setImage(testImage, forKey: "test_\(i)")
-        }
-    }
-}
-```
-
-
-### 3. UI 测试 (UI Tests)
+### 3. UI 测试
 
 #### 测试场景
-- **应用启动流程**: 验证应用正常启动和主界面加载
-- **导航功能**: 测试页面间的导航和返回
-- **训练流程**: 完整的训练交互流程测试
+- **应用启动流程**: 应用启动和主界面加载验证
+- **导航功能**: 页面间导航和返回功能
+- **训练流程**: 完整训练交互流程
 - **浏览功能**: 犬种列表浏览和详情查看
 - **性能监控**: 启动时间和界面响应性能
 
-#### 主要测试用例
-```swift
-// 应用启动测试
-func testAppLaunchAndBasicNavigation() throws {
-    let app = XCUIApplication()
-    app.launch()
-    
-    // 验证主界面元素
-    XCTAssertTrue(app.navigationBars["Bark Brain"].waitForExistence(timeout: 10.0))
-    XCTAssertTrue(app.staticTexts["Today's Stats"].waitForExistence(timeout: 5.0))
-}
+### 4. 测试执行
 
-// 训练流程测试
-func testTrainingFlow() throws {
-    let app = XCUIApplication()
-    app.launch()
-    
-    // 启动训练
-    let trainingButton = app.buttons.containing(NSPredicate(format: "label CONTAINS 'Image to Name Training'")).firstMatch
-    trainingButton.tap()
-    
-    // 验证训练界面
-    XCTAssertTrue(app.navigationBars["Image to Name Training"].waitForExistence(timeout: 10.0))
-    XCTAssertTrue(app.buttons["Exit"].exists)
-}
-```
+#### 本地测试
+支持运行全部测试、单元测试、UI测试和性能测试的独立执行，并可生成详细的测试覆盖率报告。
 
-### 4. 测试运行和持续集成
+### 5. 测试数据管理
 
-#### 本地测试运行
-```bash
-# 运行所有测试
-xcodebuild test -scheme BarkBrain -destination 'platform=iOS Simulator,name=iPhone 15'
-
-# 只运行单元测试
-xcodebuild test -scheme BarkBrain -destination 'platform=iOS Simulator,name=iPhone 15' -only-testing:BarkBrainTests
-
-# 只运行 UI 测试
-xcodebuild test -scheme BarkBrain -destination 'platform=iOS Simulator,name=iPhone 15' -only-testing:BarkBrainUITests
-
-# 运行性能测试
-xcodebuild test -scheme BarkBrain -destination 'platform=iOS Simulator,name=iPhone 15' -only-testing:BarkBrainTests/PerformanceTests
-```
-
-
-#### 测试报告
-```bash
-# 生成测试覆盖率报告
-xcodebuild test -scheme BarkBrain -enableCodeCoverage YES -destination 'platform=iOS Simulator,name=iPhone 15'
-
-# 查看覆盖率报告
-xcrun xccov view --report DerivedData/BarkBrain/Logs/Test/*.xcresult
-```
-
-### 5. 测试数据和 Mock
-
-#### Mock 服务设计
-```swift
-// Mock API 服务
-class MockDogAPIService: DogAPIServiceProtocol {
-    var shouldReturnError = false
-    
-    func fetchBreeds() async throws -> DogBreedsResponse {
-        if shouldReturnError {
-            throw APIError.networkError
-        }
-        return DogBreedsResponse(message: ["labrador": [], "poodle": ["toy", "standard"]])
-    }
-}
-
-// 测试数据工厂
-struct TestDataFactory {
-    static func createTestBreed() -> Breed {
-        return Breed(name: "testBreed", subBreeds: ["sub1", "sub2"])
-    }
-    
-    static func createTestGameState() -> GameState {
-        var gameState = GameState()
-        gameState.recordAnswer(isCorrect: true)
-        return gameState
-    }
-}
-```
+#### Mock 服务
+提供完整的Mock API服务和测试数据工厂，支持各种测试场景的数据需求，确保测试的独立性和可重复性。
 
 ## 快速开始
 

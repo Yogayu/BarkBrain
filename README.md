@@ -177,176 +177,46 @@ class ImageCacheManager {
 ## Testing Strategy
 
 ### Testing Architecture Design
+The project adopts a layered testing architecture with three levels: unit tests, performance tests, and UI tests, ensuring code quality and application stability.
 
 ### Test File Structure
-
-```
-BarkBrainTests/
-├── BarkBrainTests.swift           # Core functionality unit tests
-└── Performance/
-    └── PerformanceTests.swift     # Performance benchmark tests
-
-BarkBrainUITests/
-├── BarkBrainUITests.swift         # Main UI functionality tests
-└── BarkBrainUITestsLaunchTests.swift  # App launch tests
-```
+- **BarkBrainTests**: Core functionality unit tests and performance benchmark tests
+- **BarkBrainUITests**: UI functionality tests and app launch tests
 
 ### 1. Unit Tests
 
 #### Test Coverage
-- **Model Layer Testing**: `Breed`, `GameState` and other data models
+- **Model Layer Testing**: `Breed`, `GameState` and other data model validation
 - **Business Logic Testing**: Training logic, score calculation, state management
 - **API Service Testing**: Network requests, data parsing, error handling
-- **Caching Mechanism Testing**: Image cache, data cache strategies
-
-#### Core Test Cases
-```swift
-// Model testing example
-func testBreedModelInitialization() {
-    let breed = Breed(name: "labrador", subBreeds: ["chocolate", "yellow"])
-    XCTAssertEqual(breed.displayName, "Labrador")
-    XCTAssertEqual(breed.subBreeds.count, 2)
-}
-
-// Game state testing example
-func testGameStateScoreTracking() {
-    var gameState = GameState()
-    gameState.recordAnswer(isCorrect: true)
-    XCTAssertEqual(gameState.correctAnswers, 1)
-    XCTAssertEqual(gameState.accuracy, 1.0)
-}
-
-// API service testing example
-func testDogAPIServiceSuccess() async throws {
-    let mockService = MockDogAPIService()
-    let response = try await mockService.fetchBreeds()
-    XCTAssertFalse(response.message.isEmpty)
-}
-```
+- **Caching Mechanism Testing**: Image cache and data cache strategy validation
 
 ### 2. Performance Tests
 
 #### Test Metrics
-- **API Concurrency Performance**: Test performance of multiple simultaneous API requests
-- **Image Cache Performance**: Test cache operation response time
-- **Model Creation Performance**: Test performance of creating large numbers of data models
-- **Memory Usage Efficiency**: Monitor memory allocation and deallocation
-
-#### Performance Benchmarks
-```swift
-// API concurrency performance test
-func testAPIConcurrentRequestsPerformance() {
-    measure(metrics: [XCTClockMetric(), XCTMemoryMetric()]) {
-        // Execute 10 concurrent API requests
-        let expectation = XCTestExpectation(description: "Concurrent API requests")
-        // Test implementation...
-    }
-}
-
-// Cache performance test
-func testImageCachePerformance() {
-    measure(metrics: [XCTClockMetric()]) {
-        // Execute 100 cache operations
-        for i in 0..<100 {
-            imageCache.setImage(testImage, forKey: "test_\(i)")
-        }
-    }
-}
-```
-
+- **API Concurrency Performance**: Performance of multiple simultaneous API requests
+- **Image Cache Performance**: Cache operation response time
+- **Model Creation Performance**: Efficiency of creating large numbers of data models
+- **Memory Usage Efficiency**: Memory allocation and deallocation monitoring
 
 ### 3. UI Tests
 
 #### Test Scenarios
-- **App Launch Flow**: Verify normal app startup and main interface loading
-- **Navigation Functionality**: Test navigation between pages and back functionality
-- **Training Flow**: Complete training interaction flow testing
+- **App Launch Flow**: App startup and main interface loading verification
+- **Navigation Functionality**: Page navigation and back functionality
+- **Training Flow**: Complete training interaction flow
 - **Browse Functionality**: Breed list browsing and detail viewing
 - **Performance Monitoring**: Launch time and interface responsiveness
 
-#### Main Test Cases
-```swift
-// App launch test
-func testAppLaunchAndBasicNavigation() throws {
-    let app = XCUIApplication()
-    app.launch()
-    
-    // Verify main interface elements
-    XCTAssertTrue(app.navigationBars["Bark Brain"].waitForExistence(timeout: 10.0))
-    XCTAssertTrue(app.staticTexts["Today's Stats"].waitForExistence(timeout: 5.0))
-}
+### 4. Test Execution
 
-// Training flow test
-func testTrainingFlow() throws {
-    let app = XCUIApplication()
-    app.launch()
-    
-    // Start training
-    let trainingButton = app.buttons.containing(NSPredicate(format: "label CONTAINS 'Image to Name Training'")).firstMatch
-    trainingButton.tap()
-    
-    // Verify training interface
-    XCTAssertTrue(app.navigationBars["Image to Name Training"].waitForExistence(timeout: 10.0))
-    XCTAssertTrue(app.buttons["Exit"].exists)
-}
-```
+#### Local Testing
+Supports independent execution of all tests, unit tests, UI tests, and performance tests, with detailed test coverage report generation.
 
-### 4. Test Execution and Continuous Integration
+### 5. Test Data Management
 
-#### Local Test Execution
-```bash
-# Run all tests
-xcodebuild test -scheme BarkBrain -destination 'platform=iOS Simulator,name=iPhone 15'
-
-# Run unit tests only
-xcodebuild test -scheme BarkBrain -destination 'platform=iOS Simulator,name=iPhone 15' -only-testing:BarkBrainTests
-
-# Run UI tests only
-xcodebuild test -scheme BarkBrain -destination 'platform=iOS Simulator,name=iPhone 15' -only-testing:BarkBrainUITests
-
-# Run performance tests
-xcodebuild test -scheme BarkBrain -destination 'platform=iOS Simulator,name=iPhone 15' -only-testing:BarkBrainTests/PerformanceTests
-```
-
-
-#### Test Reports
-```bash
-# Generate test coverage report
-xcodebuild test -scheme BarkBrain -enableCodeCoverage YES -destination 'platform=iOS Simulator,name=iPhone 15'
-
-# View coverage report
-xcrun xccov view --report DerivedData/BarkBrain/Logs/Test/*.xcresult
-```
-
-### 5. Test Data and Mocks
-
-#### Mock Service Design
-```swift
-// Mock API service
-class MockDogAPIService: DogAPIServiceProtocol {
-    var shouldReturnError = false
-    
-    func fetchBreeds() async throws -> DogBreedsResponse {
-        if shouldReturnError {
-            throw APIError.networkError
-        }
-        return DogBreedsResponse(message: ["labrador": [], "poodle": ["toy", "standard"]])
-    }
-}
-
-// Test data factory
-struct TestDataFactory {
-    static func createTestBreed() -> Breed {
-        return Breed(name: "testBreed", subBreeds: ["sub1", "sub2"])
-    }
-    
-    static func createTestGameState() -> GameState {
-        var gameState = GameState()
-        gameState.recordAnswer(isCorrect: true)
-        return gameState
-    }
-}
-```
+#### Mock Services
+Provides complete Mock API services and test data factories, supporting various test scenario data requirements while ensuring test independence and repeatability.
 
 ## Quick Start
 
