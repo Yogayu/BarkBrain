@@ -1,8 +1,14 @@
 # BarkBrain - Dog Breed Learning Training App
 
 [中文版本项目介绍](./README_CN.md)
-
 **BarkBrain** - Making dog breed learning simple and fun!
+
+
+|  |  |  |
+|---|---|---|
+| ![](https://github.com/user-attachments/assets/fcd1f87a-8d9c-4f60-a7ab-bfd09aafccdc) | ![](https://github.com/user-attachments/assets/407bcf99-422d-4e3d-9124-396253af13e1) | ![](https://github.com/user-attachments/assets/c7464ccd-1db9-4287-90ad-987ece0936a6) |
+
+
 
 An iOS app for learning dog breeds that helps users learn and identify different dog breeds. Through image recognition training, breed browsing, and progress tracking, it provides a complete dog breed learning experience.
 
